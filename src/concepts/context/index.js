@@ -1,3 +1,15 @@
-const ContextExample = () => <div>Here there will be a context example</div>;
+import StaticContextExample from "./StaticContext";
+import DynamicContextExample from "./DynamicContext";
+import UpdatingContextValueNested from "./UpdatingContextValueNested";
 
-export default ContextExample;
+const ContextExamples = () => (
+  <>
+    <StaticContextExample />
+    <hr />
+    <DynamicContextExample />
+    <hr />
+    <UpdatingContextValueNested/>
+  </>
+);
+
+export default ContextExamples;

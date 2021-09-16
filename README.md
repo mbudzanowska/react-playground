@@ -92,6 +92,36 @@ There are a few things to remember:
 2. When working with TypeScript, you'll need to provide an overrides object for rules that should only target TypeScript files.
 3. It's important to note that any rules that are set to "error" will stop the project from building.
 
+## Debugging in the VSC
+
+Chrome Debugger Extension should be installed
+
+1. create .vscode folder in the app root directory
+2. create launch.json file
+
+> Note: the URL may be different if you've made adjustments via the HOST or PORT environment variables.
+
+3. npm start
+4. F5 or green debug icon (in VSC)
+
+## Formatting Code Automatically
+
+To format our code whenever we make a commit in git:
+
+1. yarn add husky lint-staged 
+2. (IF NOT ALREADY INCLUDED) yarn add prettier
+
+- husky makes it possible to use githooks as if they are npm scripts.
+- lint-staged allows us to run scripts on staged files in git. See this blog post about lint-staged to learn more about it.
+- prettier is the JavaScript formatter we will run before commits.
+
+3. add husky configuration to package.json
+4. add lint-staged configuration to package.json
+
+5. ./node_modules/.bin/prettier --write "src/**/*.{js,jsx,ts,tsx,json,css,scss,md}"
+this will format the entire project for the first time
+
+> It’s important to install Prettier locally in every project, so each project gets the correct Prettier version. (if you want to use Prettier VSC plugin)
 
 
 

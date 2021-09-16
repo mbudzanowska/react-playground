@@ -68,3 +68,68 @@ This section has moved here: [https://facebook.github.io/create-react-app/docs/d
 ### `yarn build` fails to minify
 
 This section has moved here: [https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify](https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify)
+
+
+# Setting up the editor
+https://create-react-app.dev/docs/setting-up-your-editor/
+
+
+## Syntax highlighting
+
+https://babeljs.io/docs/en/editors/
+
+Install the vscode-language-babel extension and follow the instructions.
+
+## Displaying Lint Output in the Editor
+
+They are not required for linting. You should see the linter output right in your terminal as well as the browser console. If you prefer the lint results to appear right in your editor, please make sure you install an ESLint plugin/extension.
+
+### Extending or replacing the default ESLint config
+
+There are a few things to remember:
+
+1. We highly recommend extending the base config, as removing it could introduce hard-to-find issues.
+2. When working with TypeScript, you'll need to provide an overrides object for rules that should only target TypeScript files.
+3. It's important to note that any rules that are set to "error" will stop the project from building.
+
+
+
+
+
+
+
+# Custom
+
+## a11y
+
+https://medium.com/@pppped/extend-create-react-app-with-airbnbs-eslint-config-prettier-flow-and-react-testing-library-96627e9a9672
+
+Extend ESLint configuration with AirBnB’s linting rules and Prettier.
+
+Using Prettier will ensure the ability to automatically fix and beautify your code following ESLint configuration.
+
+1. yarn add -D eslint-config-airbnb eslint-config-prettier eslint-plugin-jsx-a11y eslint-plugin-prettier prettier
+2. create a .eslintrc
+
+This file basically tells to esLint to use airbnb rules and generally how to lint the code.
+
+3. in .eslintrc
+"react/jsx-uses-react": "off",
+"react/react-in-jsx-scope": "off"
+
+- these rules are part of one of the configuration: "react-app", "airbnb", "plugin:jsx-a11y/recommended", "prettier" and needs to be switched off as the new JSX transform does not require to import React anymore. 
+
+4. add lint script to package.json
+5. yarn lint (will throw an error because it's trying to check node-modules)
+6. create .eslintignore with node_modules to omit .ts/.tsx checks for those
+7. yarn lint should work
+
+Current configuration does not make Prettier formatting to follow eslint rules.
+
+https://prettier.io/docs/en/integrating-with-linters.html
+
+Linters usually contain not only code quality rules, but also stylistic rules. Most stylistic rules are unnecessary when using Prettier, but worse – they might conflict with Prettier! Use Prettier for code formatting concerns, and linters for code-quality concerns. -> eslint-config-prettier makes sure to turn of rules that are unnecessary with Prettier
+
+Solution: prettier-eslint[https://github.com/prettier/prettier-eslint]
+
+This formats your code via prettier, and then passes the result of that to eslint --fix. This way you can get the benefits of prettier's superior formatting capabilities, but also benefit from the configuration capabilities of eslint. (not configured in this project)
